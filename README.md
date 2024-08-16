@@ -1,2 +1,1 @@
-# GenerateMovie
-Frontend coding challenge for Generate: Generate Movie homepage.
+This is the web app for Generate's Frontend coding challenge: Generate Movie. 

@@ -3,11 +3,11 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-import frame from "../../../public/frame.png";
-import unopenedNotification from "../../../public/unopened_notification.png";
-import notification from "../../../public/notification.png";
-import profile from "../../../public/profile.png";
-import settings from "../../../public/settings.png";
+import frame from "../../public/frame.png";
+import unopenedNotification from "../../public/unopened_notification.png";
+import notification from "../../public/notification.png";
+import profile from "../../public/profile.png";
+import settings from "../../public/settings.png";
 
 import { useEffect, useState } from "react";
 
@@ -23,11 +23,10 @@ const Navbar = () => {
   }, []);
 
   //checks if the current tab is the same as the tabPath
-  const isCurrentTab = (tabPath) => currentPath === tabPath;
+  const isCurrentTab = (tabPath: string) => currentPath === tabPath;
 
   //keeps track of whether the user has a notification: with a more elaborate backend, we would fetch this from our API/DB
-  const [hasNotification, setHasNotification] = useState(false);
-  // const [currentTab, setCurrentTab] = useState("Home");
+  const [hasNotification, setHasNotification] = useState(true);
 
   return (
     <div className={styles.navbarContainer}>
@@ -68,17 +67,18 @@ const Navbar = () => {
           </a>
         </div>
         <div className={styles.userOptionsContainer}>
-          <div className={styles.smallLogoContainer}>
+          <div className={styles.smallLogoContainer}
+          onClick={() => (setHasNotification(false))}>
             {hasNotification ? (
               <Image
-                src={notification}
+                src={unopenedNotification}
                 alt="profile"
                 sizes=""
                 className={styles.smallLogo}
               />
             ) : (
               <Image
-                src={unopenedNotification}
+                src={notification}
                 alt="profile"
                 sizes=""
                 className={styles.smallLogo}
@@ -113,7 +113,7 @@ const styles = {
   logoContainer: "flex flex-row items-center",
   pageOptionsContainer: "flex flex-row space-x-[2vw]",
   pageOptions:
-    "hover:text-Alien-Blue hover:cursor-pointer hover:underline underline-offset-[1.5vh]",
+    "hover:text-Alien-Blue hover:cursor-pointer hover:underline underline-offset-[1.5vh] text-[1vw]",
   userOptionsContainer: "pl-[4vw] flex flex-row space-x-[2vw] items-center",
   optionsContainer: "flex flex-row items-center",
   generateText: "pl-[1vw] text-[1.5vw] font-bold",
